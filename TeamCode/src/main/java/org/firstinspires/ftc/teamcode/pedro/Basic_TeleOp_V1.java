@@ -14,6 +14,10 @@ public class Basic_TeleOp_V1 extends LinearOpMode {
     DcMotor frontLeft;
     DcMotor backRight;
     DcMotor backLeft;
+    DcMotor intake1;
+    DcMotor intake2;
+    DcMotor flywheel;
+
 
     @Override
     public void runOpMode() {
@@ -21,6 +25,9 @@ public class Basic_TeleOp_V1 extends LinearOpMode {
         backRight = hardwareMap.get(DcMotor.class, "BR");
         frontLeft = hardwareMap.get(DcMotor.class, "FL");
         backLeft = hardwareMap.get(DcMotor.class, "BL");
+        intake1 = hardwareMap.get(DcMotor.class, "intake1");
+        intake2 = hardwareMap.get(DcMotor.class, "intake2");
+        flywheel = hardwareMap.get(DcMotor.class, "flywheel");
         waitForStart();
 
         while (opModeIsActive()) {
@@ -73,6 +80,25 @@ public class Basic_TeleOp_V1 extends LinearOpMode {
             frontRight.setPower(frontRightPower);
             backLeft.setPower(backLeftPower);
             backRight.setPower(backRightPower);
+
+            if (gamepad1.right_trigger > 0.5) {
+                intake1.setPower(1.0);
+                intake2.setPower(1.0);
+            } else if (gamepad1.left_trigger > 0.5) {
+                intake1.setPower(-1.0);
+                intake2.setPower(-1.0);
+            } else {
+                intake1.setPower(0.0);
+                intake2.setPower(0.0);
+            }
+
+            if (gamepad1.right_bumper) {
+                flywheel.setPower(1.0);
+            } else if (gamepad1.left_bumper) {
+                flywheel.setPower(-1.0);
+            } else {
+                flywheel.setPower(0.0);
+            }
         }
     }
 }
