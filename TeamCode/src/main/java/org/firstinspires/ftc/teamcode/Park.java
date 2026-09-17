@@ -1,0 +1,30 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
+@Autonomous(name = "Park", group = "Auto")
+public class Park extends LinearOpMode {
+    DcMotor frontRight;
+    DcMotor frontLeft;
+    DcMotor backRight;
+    DcMotor backLeft;
+    @Override
+    public void runOpMode() {
+        frontRight = hardwareMap.get(DcMotor.class, "FR");
+        backRight = hardwareMap.get(DcMotor.class, "BR");
+        frontLeft = hardwareMap.get(DcMotor.class, "FL");
+        backLeft = hardwareMap.get(DcMotor.class, "BL");
+        waitForStart();
+        frontRight.setPower(-1.0);
+        frontLeft.setPower(1.0);
+        backLeft.setPower(-1.0);
+        backRight.setPower(1.0);
+        sleep(10000);
+        frontRight.setPower(0);
+        frontLeft.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+    }
+}
