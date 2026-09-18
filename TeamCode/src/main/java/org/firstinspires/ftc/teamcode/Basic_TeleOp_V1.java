@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name = "Basic_TeleOp_V1", group = "36 Hour Scrimmage")
 public class Basic_TeleOp_V1 extends LinearOpMode {
@@ -20,11 +21,12 @@ public class Basic_TeleOp_V1 extends LinearOpMode {
     public void runOpMode() {
         frontRight = hardwareMap.get(DcMotor.class, "FR");
         backRight = hardwareMap.get(DcMotor.class, "BR");
-        frontLeft = hardwareMap.get(DcMotor.class, "FL");
-        backLeft = hardwareMap.get(DcMotor.class, "BL");
+//        frontLeft = hardwareMap.get(DcMotor.class, "FL");
+//        backLeft = hardwareMap.get(DcMotor.class, "BL");
         intake1 = hardwareMap.get(DcMotor.class, "intake1");
         intake2 = hardwareMap.get(DcMotor.class, "intake2");
         flywheel = hardwareMap.get(DcMotor.class, "flywheel");
+        intake2.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
 
         while (opModeIsActive()) {
@@ -73,10 +75,10 @@ public class Basic_TeleOp_V1 extends LinearOpMode {
             */
 
             // Send calculated power to wheels
-            frontLeft.setPower(frontLeftPower);
-            frontRight.setPower(frontRightPower);
-            backLeft.setPower(backLeftPower);
-            backRight.setPower(backRightPower);
+//            frontLeft.setPower(frontLeftPower);
+//            frontRight.setPower(frontRightPower);
+//            backLeft.setPower(backLeftPower);
+//            backRight.setPower(backRightPower);
 
             if (gamepad1.right_trigger > 0.5) {
                 intake1.setPower(1.0);
